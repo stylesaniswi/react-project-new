@@ -5,10 +5,10 @@ import "bootstrap/dist/css/bootstrap.min.css";
 function Getuser() {
   const [users, setUsers] = useState([]);
   const [userValues, setUserValues] = useState("");
-  const [followers, setFollowers] = useState(0);
+  
 
   const getUsers = async () => {
-    const response = await fetch("https://api.github.com/users/page=100");
+    const response = await fetch("https://api.github.com/users");
     setUsers(await response.json());
   };
 
