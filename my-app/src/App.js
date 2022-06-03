@@ -35,7 +35,7 @@ const doneItems=(id)=>{
 }
 
 const apiCall=()=>{
-  fetch("https://www.boredapi.com/api/activity")
+  fetch("https://api.github.com/users")
       .then(res => res.json())
       .then(
         (result) => {
