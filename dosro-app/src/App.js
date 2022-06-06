@@ -11,7 +11,7 @@ import Getuser from "./components/Getuser";
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router basename='/react'>
       <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <a href="/home" className="navbar-brand">
