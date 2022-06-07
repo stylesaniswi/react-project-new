@@ -3,6 +3,8 @@ import {db,auth} from '../firebase'
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
 import 'firebase/compat/firestore';
+import "bootstrap/dist/css/bootstrap.min.css";
+import 'font-awesome/css/font-awesome.min.css';
 
 function SendMessage({scroll}) {
     const [msg ,setMsg] = useState('');
@@ -22,11 +24,15 @@ function SendMessage({scroll}) {
     }
   return (
     <div>
+        
         <form>
-            <div className="sendMsg">
-            <input style={{ width: '78%', fontSize: '15px', fontWeight: '550', marginLeft: '5px', marginBottom: '-3px' }} placeholder='Message...' onChange={(e)=> setMsg(e.target.value)} />
-            <button style={{ width: '78%', fontSize: '15px', fontWeight: '550', marginLeft: '5px', marginBottom: '-3px' }} placeholder='Message...' type='submit' onClick={sendMessage}>Send</button>
-            </div>
+        <div className="sendMsg row">
+                <input  className="col-9 " placeholder='Message...' onChange={(e)=> setMsg(e.target.value)} />
+                <button className="col-2 btn btn-primary btn-lg "   type='submit' onClick={sendMessage}>
+                    <i className="fa fa-send "aria-hidden="true"/>
+                    <span>Send</span></button>
+            
+        </div>
         </form>
     </div>
   )

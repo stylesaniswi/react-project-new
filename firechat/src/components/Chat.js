@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { db , auth } from '../firebase'
 import SendMessage from './SendMessage'
-import SignOut from './SignOut'
+import "bootstrap/dist/css/bootstrap.min.css";
+import 'font-awesome/css/font-awesome.min.css';
+import Members from './Members';
 
 function Chat() {
     const scroll = useRef()
@@ -14,7 +16,10 @@ function Chat() {
   
     return (
     <>
-        <SignOut />
+        <div className='container-fluid chat '>
+        <div className='act-mem '>
+            <h1>Chat Freely</h1>
+        </div>
         <div className='msgs'>
         {
             messages.map(({id,text,photoURL, uid})=>(
@@ -24,9 +29,12 @@ function Chat() {
                 </div>
             ))
         }
+        
         </div>
         <SendMessage scroll={scroll} />
         <div ref={scroll}></div>
+        
+        </div>
         
     </>
   )
