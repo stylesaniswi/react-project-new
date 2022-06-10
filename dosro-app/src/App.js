@@ -6,12 +6,15 @@ import { BrowserRouter as Router,Routes, Route, Link } from 'react-router-dom';
 import Add from "./components/Add";
 import Show from "./components/Show";
 import Getuser from "./components/Getuser";
+import User from "./components/User";
 
  
 class App extends Component {
+  
   render() {
+    
     return (
-      <Router basename='/react'>
+      <Router>
       <div>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
         <a href="/home" className="navbar-brand">
@@ -33,6 +36,11 @@ class App extends Component {
               Getuser
             </Link>
           </li>
+          <li className="nav-item">
+            <Link to={"/user"} className="nav-link">
+              Your Profile
+            </Link>
+          </li>
         </div>
       </nav>
       
@@ -40,6 +48,7 @@ class App extends Component {
           <Route exact path="/add" element={<Add />} />
           <Route exact path="/show" element={<Show />} />
           <Route exact path="/getuser" element={<Getuser/>} />
+          <Route exact path="/user" element={<User/>} />
         </Routes>
   
     </div>

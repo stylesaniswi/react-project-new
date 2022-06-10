@@ -29,13 +29,7 @@ function Getuser() {
     document.getElementsByClassName('show')[0].style.display="";
     document.getElementsByClassName('clicked')[0].style.display="none";
   }
-  const getFollowers = async (login) => {
-    fetch(`https://api.github.com/users/${login}`)
-      .then((res) => res.json())
-      .then((res) => {
-        return res.followers;
-      });
-  };
+
 console.log("aayo", userValues);
   return (
 
@@ -57,6 +51,7 @@ console.log("aayo", userValues);
                         src={curElem.avatar_url}
                         className="rounded"
                         width="155"
+                        alt=""
                       />
                     </div>
                     <div className="ml-3 w-100">
@@ -97,6 +92,7 @@ console.log("aayo", userValues);
                             src={userValues.avatar_url}
                             className="rounded"
                             width="155"
+                            alt=""
                           />
                         </div>
                         <div className="ml-3 w-100">
