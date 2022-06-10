@@ -8,11 +8,12 @@ const User = () => {
     // const [userValues, setUserValues] = useState("");
     const hasCode= false;
 
-    const click = async () =>{
+    const click = () =>{
+      const axios =require('axios');
+      const request = require('superagent');
         const url = window.location.href;
       const hasCode = url.includes("?code=");
-      const proxy_url = `http://api.github.com/user`;
-      const data = { 'grant_type': 'client_credentials'};
+      
   
       // If Github API returns the code parameter
       if (hasCode) {
@@ -22,6 +23,8 @@ const User = () => {
         var requestData = {
           code: newUrl[1]
         };
+
+        var data = { };
   
         
   
@@ -37,20 +40,50 @@ const User = () => {
 
         
       }
-        await fetch(proxy_url,{
-            mode: 'no-cors',
-            method: 'POST',
-            headers: { 'content-type': 'application/x-www-form-urlencoded',
-            'Authorization': `Bearer ${requestData.code}`
-        },
-            auth:{
-              username: initialUser.CLIENT_ID,
-              password: initialUser.CLIENT_SECRET,
-            },
-            data: JSON.stringify(data),
-          }
+    //           fetch('https://github.com/login/oauth/access_token',{
+    //             method: "POST",       
+    //         data: {
+    //           'grant_type': 'authorization_code',
+    //           'client_id': initialUser.CLIENT_ID,
+    //           'client_secret': initialUser.CLIENT_SECRET,
+    //           'code': requestData.code,
+    //           'redirect_uri': initialUser.REDIRECT_URI
+    //         },
+    //         headers: { 'content-type': 'application/x-www-form-urlencoded'} 
+    //       }
 
-    )
+    // )
+    //   .then(response => response.json())
+    //   .then(data => {console.log(data)
+    //   })
+    //   .catch(error => {
+    //     console.log(error);
+    //   });
+
+      request
+      .post('ttps://github.com/login/oauth/access_token')
+      .send({
+              client_id: initialUser.CLIENT_ID,
+              client_secret : initialUser.CLIENT_SECRET,
+              code : requestData.code,
+              redirect_uri: initialUser.REDIRECT_URI
+      }) // sends a JSON post body
+      .set('Accept', 'application/json')
+      .then(function (result) {
+        const data = result.body;
+        console.log(data);
+      });
+
+
+    }
+
+    const tryo= () =>{
+      fetch(`https://api.github.com/user`,{
+        method: "GET",
+        headers: {
+          Authorization: 'Bearer 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' 
+        }
+      })
       .then(response => response.json())
       .then(data => {console.log(data)
       })
@@ -65,7 +98,8 @@ const User = () => {
           <div>
           <a href={`https://github.com/login/oauth/authorize?scope=user&client_id=${initialUser.CLIENT_ID}&redirect_uri=${initialUser.REDIRECT_URI}`}>
           <Button >Sign in with github</Button></a>
-          <Button onClick={click}>click</Button></div>
+          <Button onClick={click}>click</Button>
+          <Button onClick={tryo}>Trythis</Button></div>
 }
 {/* {
     hasCode && 
